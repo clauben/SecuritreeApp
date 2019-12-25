@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class Login extends AppCompatActivity {
 
     EditText etUsername;
@@ -29,6 +35,31 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etUsername.getText().toString().trim();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/php login/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.login(username,password);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(),Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+
+                    }
+                });
+                /*
 
                 if(username.isEmpty() || password.isEmpty()){
                     Toast.makeText(Login.this, "Voer gegevens in.", Toast.LENGTH_SHORT).show();
@@ -39,6 +70,8 @@ public class Login extends AppCompatActivity {
                 } else {
                     Toast.makeText(Login.this, "Username/Password Ongeldig", Toast.LENGTH_SHORT).show();
                 }
+
+                 */
             }
         });
     }
