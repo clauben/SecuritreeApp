@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
-                String password = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/php login/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
@@ -47,6 +47,10 @@ public class Login extends AppCompatActivity {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
                             Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(),Toast.LENGTH_SHORT).show();
+
+                            //Als de verbinding geslaagd is word de app geopend
+                            Intent mainIntent = new Intent(Login.this, MainActivity.class);
+                            Login.this.startActivity(mainIntent);
                         }
                         else {
                             Toast.makeText(getApplicationContext(),String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
@@ -56,6 +60,7 @@ public class Login extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(Login.this, "Kan geen verbinding maken.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
