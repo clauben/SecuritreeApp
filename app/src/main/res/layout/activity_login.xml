@@ -6,43 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
+
     <EditText
         android:id="@+id/edittext_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="32dp"
+        android:drawableLeft="@drawable/ic_person"
         android:hint="Username"
         android:maxLines="1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/edittext_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:drawableLeft="@drawable/ic_lock_black"
         android:hint="Password"
         android:inputType="textPassword"
         android:maxLines="1"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_username"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_username" />
+
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#3C3F41"
+        android:layout_width="133dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_rounded"
         android:text="@string/login_button"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_password"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="142dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/login_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/securitree_logo" />
+        app:srcCompat="@drawable/tree_logo_round" />
+
+    <ImageView
+        android:layout_width="216dp"
+        android:layout_height="215dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/round_backround_1" />
+
+    <ImageView
+        android:layout_width="216dp"
+        android:layout_height="215dp"
+        app:layout_constraintBottom_toTopOf="@+id/edittext_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/round_backround_2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
