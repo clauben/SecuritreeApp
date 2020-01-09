@@ -21,6 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="411dp"
@@ -30,4 +31,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sensorbox" />
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>

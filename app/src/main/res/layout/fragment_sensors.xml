@@ -7,6 +7,7 @@
     android:background="@color/Pistachio"
     tools:context=".ui.home.HomeFragment">
 
+    <!--
     <ListView
         android:id="@+id/listView_home"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toTopOf="@+id/listView_home"
         app:srcCompat="@drawable/sensorbox" />
     </ListView>
+    -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
