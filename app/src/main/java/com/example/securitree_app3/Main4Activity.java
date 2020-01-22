@@ -1,5 +1,7 @@
 package com.example.securitree_app3;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -7,33 +9,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,7 +27,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class Main4Activity extends AppCompatActivity {
 
     private ArrayList<ClassListItems> itemArrayList;  //List items Array
     private MyAppAdapter myAppAdapter; //Array Adapter
@@ -56,24 +42,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        setContentView(R.layout.activity_main4);
 
         listView = (ListView) findViewById(R.id.listView); //ListView Declaration
         itemArrayList = new ArrayList<ClassListItems>(); // Arraylist Initialization
 
         // Calling Async Task
-        MainActivity.SyncData orderData = new MainActivity.SyncData();
+        SyncData orderData = new SyncData();
         orderData.execute("");
-
     }
 
     // Async Task has three overrided methods,
@@ -84,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() //Starts the progress dailog
         {
-            progress = ProgressDialog.show(MainActivity.this, "Synchronising",
+            progress = ProgressDialog.show(Main4Activity.this, "Synchronising",
                     "ListView Loading! Please Wait...", true);
         }
 
@@ -131,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String msg) // disimissing progress dialoge, showing error and setting up my ListView
         {
             progress.dismiss();
-            Toast.makeText(MainActivity.this, msg + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(Main4Activity.this, msg + "", Toast.LENGTH_LONG).show();
             if (success == false) {
             } else {
                 try {
-                    myAppAdapter = new MainActivity.MyAppAdapter(itemArrayList, MainActivity.this);
+                    myAppAdapter = new MyAppAdapter(itemArrayList, Main4Activity.this);
                     listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                     listView.setAdapter(myAppAdapter);
                 } catch (Exception ex) {
@@ -186,23 +162,24 @@ public class MainActivity extends AppCompatActivity {
         {
 
             View rowView = convertView;
-            MainActivity.MyAppAdapter.ViewHolder viewHolder = null;
+            ViewHolder viewHolder = null;
             if (rowView == null) {
                 LayoutInflater inflater = getLayoutInflater();
                 rowView = inflater.inflate(R.layout.list_content, parent, false);
-                viewHolder = new MainActivity.MyAppAdapter.ViewHolder();
+                viewHolder = new ViewHolder();
                 viewHolder.textName = (TextView) rowView.findViewById(R.id.textName);
+                viewHolder.textName2 = (TextView) rowView.findViewById(R.id.textName2);
                 viewHolder.imageView = (ImageView) rowView.findViewById(R.id.imageView);
                 rowView.setTag(viewHolder);
             } else {
-                viewHolder = (MainActivity.MyAppAdapter.ViewHolder) convertView.getTag();
+                viewHolder = (ViewHolder) convertView.getTag();
             }
             // here setting up names and images
             viewHolder.textName.setText(parkingList.get(position).getName() + "");
+            viewHolder.textName2.setText(parkingList.get(position).getName() + "");
             Picasso.with(context).load(parkingList.get(position).getImg()).into(viewHolder.imageView);
 
             return rowView;
         }
     }
-
 }

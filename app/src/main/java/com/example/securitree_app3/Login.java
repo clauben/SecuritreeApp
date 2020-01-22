@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(),Toast.LENGTH_SHORT).show();
 
                             //Als de verbinding geslaagd is word de app geopend
-                            Intent mainIntent = new Intent(Login.this, MainActivity.class);
+                            Intent mainIntent = new Intent(Login.this, DashboardNew.class);
                             Login.this.startActivity(mainIntent);
                         }
                         else {

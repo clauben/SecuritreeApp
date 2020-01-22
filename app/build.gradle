@@ -40,5 +40,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation project(':mysql-connector-java-3.0.17-ga-bin') //To be added for connection
-    implementation 'com.squareup.picasso:picasso:2.5.2'//To be added to load image into listview using url
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+//To be added to load image into listview using url
 }
