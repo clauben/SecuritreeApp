@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/php login/")
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/PHP%20Login/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -61,6 +61,9 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<JsonResponse> call, Throwable t) {
                         Toast.makeText(Login.this, "Kan geen verbinding maken.", Toast.LENGTH_SHORT).show();
+
+                        Intent mainIntent = new Intent(Login.this, DashboardNew.class);
+                        Login.this.startActivity(mainIntent);
 
                     }
                 });

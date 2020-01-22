@@ -1,17 +1,19 @@
 package com.example.securitree_app3;
 
-public class ClassListItems
-{
+public class ClassListItems {
 
     public String img; //Image URL
     public String name; //Name
     public String name2;
+    public String name3;
 
-    public ClassListItems(String name, String img, String name2)
+
+    public ClassListItems(String name, String img, String name2, String name3)
     {
+        this.name3 = name3;
+        this.name2 = name2;
         this.img = img;
         this.name = name;
-        this.name2 = name2;
     }
 
     public String getImg() {
@@ -21,4 +23,5 @@ public class ClassListItems
         return name;
     }
     public String getName2() { return name2;}
+    public String getName3() { return name3;}
 }

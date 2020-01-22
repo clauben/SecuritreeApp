@@ -27,10 +27,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main4Activity extends AppCompatActivity {
+public class Sensors extends AppCompatActivity {
 
-    private ArrayList<ClassListItems> itemArrayList;  //List items Array
-    private MyAppAdapter myAppAdapter; //Array Adapter
+    private ArrayList<ClassListItems2> itemArrayList;  //List items Array
+    private Sensors.MyAppAdapter myAppAdapter; //Array Adapter
     private ListView listView; // ListView
     private boolean success = false; // boolean
 
@@ -42,10 +42,10 @@ public class Main4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.activity_sensors);
 
-        listView = (ListView) findViewById(R.id.listView); //ListView Declaration
-        itemArrayList = new ArrayList<ClassListItems>(); // Arraylist Initialization
+        listView = (ListView) findViewById(R.id.listView2); //ListView Declaration
+        itemArrayList = new ArrayList<ClassListItems2>(); // Arraylist Initialization
 
         // Calling Async Task
         SyncData orderData = new SyncData();
@@ -60,7 +60,7 @@ public class Main4Activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() //Starts the progress dailog
         {
-            progress = ProgressDialog.show(Main4Activity.this, "Synchronising",
+            progress = ProgressDialog.show(Sensors.this, "Synchronising",
                     "ListView Loading! Please Wait...", true);
         }
 
@@ -74,14 +74,14 @@ public class Main4Activity extends AppCompatActivity {
                     success = false;
                 } else {
                     // Change below query according to your own database.
-                    String query = "SELECT * FROM melding";
+                    String query = "SELECT * FROM sensor";
                     Statement stmt = conn.createStatement();
                     ResultSet rs = stmt.executeQuery(query);
                     if (rs != null) // if resultset not null, I add items to itemArraylist using class created
                     {
                         while (rs.next()) {
                             try {
-                                itemArrayList.add(new ClassListItems(rs.getString("waarde"), rs.getString("img"), rs.getString("beschrijving"),  rs.getString("tijd")));
+                                itemArrayList.add(new ClassListItems2(rs.getString("id"), rs.getString("dao"), rs.getString("geolocatie"),  rs.getString("personeelsnummer")));
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -107,11 +107,11 @@ public class Main4Activity extends AppCompatActivity {
         protected void onPostExecute(String msg) // disimissing progress dialoge, showing error and setting up my ListView
         {
             progress.dismiss();
-            Toast.makeText(Main4Activity.this, msg + "", Toast.LENGTH_LONG).show();
+            Toast.makeText(Sensors.this, msg + "", Toast.LENGTH_LONG).show();
             if (success == false) {
             } else {
                 try {
-                    myAppAdapter = new MyAppAdapter(itemArrayList, Main4Activity.this);
+                    myAppAdapter = new MyAppAdapter(itemArrayList, Sensors.this);
                     listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                     listView.setAdapter(myAppAdapter);
                 } catch (Exception ex) {
@@ -132,15 +132,15 @@ public class Main4Activity extends AppCompatActivity {
 
         }
 
-        public List<ClassListItems> parkingList;
+        public List<ClassListItems2> parkingList;
 
         public Context context;
-        ArrayList<ClassListItems> arraylist;
+        ArrayList<ClassListItems2> arraylist;
 
-        private MyAppAdapter(List<ClassListItems> apps, Context context) {
+        private MyAppAdapter(List<ClassListItems2> apps, Context context) {
             this.parkingList = apps;
             this.context = context;
-            arraylist = new ArrayList<ClassListItems>();
+            arraylist = new ArrayList<ClassListItems2>();
             arraylist.addAll(parkingList);
         }
 

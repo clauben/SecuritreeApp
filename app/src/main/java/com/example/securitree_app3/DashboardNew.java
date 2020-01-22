@@ -26,6 +26,43 @@ public class DashboardNew extends AppCompatActivity {
             }
         });
 
+        ImageView mImageView3 = (ImageView)findViewById(R.id.imageView3);
+
+        mImageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                Intent mainIntent = new Intent(DashboardNew.this, MapsActivity.class);
+                DashboardNew.this.startActivity(mainIntent);
+
+            }
+        });
+
+        ImageView mImageView5 = (ImageView)findViewById(R.id.imageView5);
+
+        mImageView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                Intent mainIntent = new Intent(DashboardNew.this, MapsActivity.class);
+                DashboardNew.this.startActivity(mainIntent);
+
+            }
+        });
+
+        ImageView mImageView6 = (ImageView)findViewById(R.id.imageView6);
+
+        mImageView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                Intent mainIntent = new Intent(DashboardNew.this, Sensors.class);
+                DashboardNew.this.startActivity(mainIntent);
+
+            }
+        });
+
+
     }
 
 }

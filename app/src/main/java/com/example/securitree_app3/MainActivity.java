@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         while (rs.next()) {
                             try {
-                                itemArrayList.add(new ClassListItems(rs.getString("voornaam"), rs.getString("email"), rs.getString("achternaam")));
+                                itemArrayList.add(new ClassListItems(rs.getString("voornaam"), rs.getString("email"), rs.getString("achternaam"),  rs.getString("gebruikersnaam")));
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         public class ViewHolder {
             TextView textName;
             TextView textName2;
+            TextView textName3;
             ImageView imageView;
         }
 
@@ -192,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 rowView = inflater.inflate(R.layout.list_content, parent, false);
                 viewHolder = new MainActivity.MyAppAdapter.ViewHolder();
                 viewHolder.textName = (TextView) rowView.findViewById(R.id.textName);
+                viewHolder.textName2 = (TextView) rowView.findViewById(R.id.textName2);
+                viewHolder.textName3 = (TextView) rowView.findViewById(R.id.textName3);
                 viewHolder.imageView = (ImageView) rowView.findViewById(R.id.imageView);
                 rowView.setTag(viewHolder);
             } else {
@@ -199,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
             }
             // here setting up names and images
             viewHolder.textName.setText(parkingList.get(position).getName() + "");
+            viewHolder.textName2.setText(parkingList.get(position).getName2() + "");
+            viewHolder.textName3.setText(parkingList.get(position).getName3() + "");
             Picasso.with(context).load(parkingList.get(position).getImg()).into(viewHolder.imageView);
 
             return rowView;

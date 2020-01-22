@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Pistachio"
-    tools:context=".Main4Activity">
+    android:background="@color/Ocean"
+    tools:context=".Sensors">
 
 
     <TextView
@@ -17,7 +17,7 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="MELDINGEN"/>
+        android:text="Sensoren"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/Textvv"
         android:clickable="true"
-        android:id="@+id/listView" />
+        android:id="@+id/listView2" />
 
 
 
