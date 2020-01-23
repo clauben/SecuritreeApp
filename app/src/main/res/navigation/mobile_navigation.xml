@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_notifications" />
     <activity
         android:id="@+id/login"
-        android:name="com.example.securitree_app3.Login"
+        android:name="com.example.securitree_app3.Lgn"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 </navigation>

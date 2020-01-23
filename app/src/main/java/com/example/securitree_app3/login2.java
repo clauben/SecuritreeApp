@@ -1,7 +1,5 @@
 package com.example.securitree_app3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Login extends AppCompatActivity {
+class Login2 extends AppCompatActivity {
 
     EditText etUsername;
     EditText etPassword;
@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/PHP%20Login/")
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2/php login/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -49,8 +49,8 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(),Toast.LENGTH_SHORT).show();
 
                             //Als de verbinding geslaagd is word de app geopend
-                            Intent mainIntent = new Intent(Login.this, DashboardNew.class);
-                            Login.this.startActivity(mainIntent);
+                            Intent mainIntent = new Intent(Login2.this, MainActivity.class);
+                            Login2.this.startActivity(mainIntent);
                         }
                         else {
                             Toast.makeText(getApplicationContext(),String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
@@ -60,15 +60,11 @@ public class Login extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<JsonResponse> call, Throwable t) {
-                        Toast.makeText(Login.this, "Kan geen verbinding maken.", Toast.LENGTH_SHORT).show();
-
-                        Intent mainIntent = new Intent(Login.this, DashboardNew.class);
-                        Login.this.startActivity(mainIntent);
+                        Toast.makeText(Login2.this, "Kan geen verbinding maken.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
                 /*
-
                 if(username.isEmpty() || password.isEmpty()){
                     Toast.makeText(Login.this, "Voer gegevens in.", Toast.LENGTH_SHORT).show();
                 } else if(username.equals("1") && password.equals("1")){
@@ -78,7 +74,6 @@ public class Login extends AppCompatActivity {
                 } else {
                     Toast.makeText(Login.this, "Username/Password Ongeldig", Toast.LENGTH_SHORT).show();
                 }
-
                  */
             }
         });

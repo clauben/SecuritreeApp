@@ -44,8 +44,7 @@ public class DashboardNew extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                Intent mainIntent = new Intent(DashboardNew.this, MapsActivity.class);
-                DashboardNew.this.startActivity(mainIntent);
+
 
             }
         });

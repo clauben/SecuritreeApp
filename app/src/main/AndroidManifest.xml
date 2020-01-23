@@ -37,7 +37,7 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".DashboardNew" />
         <activity android:name=".Main4Activity" />
-        <activity android:name=".Login">
+        <activity android:name=".Lgn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
